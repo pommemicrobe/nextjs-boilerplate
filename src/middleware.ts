@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { DEFAULT_LOCALE, LOCALES } from './lib/locale';
- 
+
 function getLocale(request: NextRequest) {
   const acceptedLanguages = request.headers.get('accept-language');
 
   if (!acceptedLanguages) return DEFAULT_LOCALE;
-  
+
   const preferredLanguages = acceptedLanguages
     .split(',')
     .join(';')
@@ -24,17 +24,17 @@ function isDemandedLocaleExist(request: NextRequest) {
   const pathnameHasLocale = LOCALES.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
-   
+
   if (pathnameHasLocale) return true;
-   
+
   return false;
 }
 
-function redirectToPreferredLocal(request: NextRequest) {   
+function redirectToPreferredLocal(request: NextRequest) {
   const locale = getLocale(request);
 
   request.nextUrl.pathname = `/${locale}`;
-   
+
   return NextResponse.redirect(request.nextUrl);
 }
 
@@ -46,7 +46,7 @@ export function middleware(request: NextRequest) {
 
   return;
 }
- 
+
 export const config = {
   matcher: [
     '/((?!_next).*)',
