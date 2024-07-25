@@ -10,18 +10,18 @@ Complete, easy-to-use and modifiable, this boilerplate will enable you to start 
 
 ## Structure
 
-| Directory / Sub directory             | Usage |
-|---------------------------------------|-------|
-| /prisma                               | ToDo  |
-| /public                               | ToDo  |
-| /src                                  | ToDo  |
-| /src/app                              | ToDo  |
-| /src/app/(webapp-multi-locale)[lang]  | ToDo  |
-| /src/app/(webapp)                     | ToDo  |
-| /src/app/api                          | ToDo  |
-| /src/app/admin                        | ToDo  |
-| /src/lib                              | ToDo  |
-| /src/components                       | ToDo  |
+| Directory / Sub directory         | Usage |
+|-----------------------------------|-------|
+| /prisma                           | ToDo  |
+| /public                           | ToDo  |
+| /src                              | ToDo  |
+| /src/app                          | ToDo  |
+| /src/app/(webapp-locale)[lang]    | ToDo  |
+| /src/app/(webapp)                 | ToDo  |
+| /src/app/api                      | ToDo  |
+| /src/app/admin                    | ToDo  |
+| /src/lib                          | ToDo  |
+| /src/components                   | ToDo  |
 
 ## Options
 
