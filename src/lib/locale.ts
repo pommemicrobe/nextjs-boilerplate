@@ -1,25 +1,48 @@
-type DictionariesType = {
-  [key in LocalesType]: () => Promise<{ [key: string]: string}>;
-};
+import { NextRequest, NextResponse } from 'next/server';
 
 type LocalesType = 'en' | 'fr';
-
-const _DICTIONARIES: DictionariesType = {
-  en: () => import('@/../dictionaries/en.json').then((module) => module.default),
-  fr: () => import('@/../dictionaries/fr.json').then((module) => module.default),
-};
 
 const DEFAULT_LOCALE = 'en';
 const LOCALES = ['en', 'fr'];
 
-const getDictionaries = () => _DICTIONARIES;
+const _detectLocale = (request: NextRequest) => {
+  const acceptedLanguages = request.headers.get('accept-language');
 
-const getDictionary = (locale: LocalesType) => _DICTIONARIES[locale]();
+  if (!acceptedLanguages) return DEFAULT_LOCALE;
 
-const getDictionaryTermByKey = async (locale: LocalesType, key: string) => {
-  const dictionary = await getDictionary(locale);
+  const preferredLanguages = acceptedLanguages
+    .split(',')
+    .join(';')
+    .split(';')
+    .filter((acceptedLanguage) => !acceptedLanguage.startsWith('q='));
+  const preferredLanguage = preferredLanguages.find((preferredLanguage) =>
+    LOCALES.includes(preferredLanguage)
+  );
 
-  return dictionary[key] ?? key;
+  return preferredLanguage ? preferredLanguage : DEFAULT_LOCALE;
+};
+
+const isDemandedLocaleExist = async (request: NextRequest) => {
+  const { pathname } = request.nextUrl;
+  const pathnameHasLocale = LOCALES.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (pathnameHasLocale) return true;
+
+  return false;
+};
+
+const redirectToPreferredLocale = async (request: NextRequest) => {
+  const locale = _detectLocale(request);
+
+  request.nextUrl.pathname = `/${locale}`;
+
+  return NextResponse.redirect(request.nextUrl);
+};
+
+export type {
+  LocalesType,
 };
 
 export {
@@ -28,7 +51,6 @@ export {
 };
 
 export {
-  getDictionaries,
-  getDictionary,
-  getDictionaryTermByKey,
+  isDemandedLocaleExist,
+  redirectToPreferredLocale,
 };
