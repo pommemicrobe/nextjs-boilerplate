@@ -1,7 +1,7 @@
 'use server';
 
-import Credentials from 'next-auth/providers/credentials';
 import NextAuth from 'next-auth';
+import Credentials from 'next-auth/providers/credentials';
 import { object, string } from 'zod';
 
 import { hash512 } from './crypto';

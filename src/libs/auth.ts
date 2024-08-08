@@ -1,6 +1,5 @@
-import NextAuth from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-
+import NextAuth from 'next-auth';
 import auth0 from 'next-auth/providers/auth0';
 import resend from 'next-auth/providers/resend';
 

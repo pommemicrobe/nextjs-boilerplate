@@ -1,6 +1,5 @@
-import { isRedirectError } from 'next/dist/client/components/redirect';
-
 import { signIn } from '@/libs/auth';
+import { isRedirectError } from 'next/dist/client/components/redirect';
 
 export default function SignIn() {
   return (
