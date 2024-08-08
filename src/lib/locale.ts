@@ -14,9 +14,9 @@ const _detectLocale = (request: NextRequest) => {
     .split(',')
     .join(';')
     .split(';')
-    .filter((acceptedLanguage) => !acceptedLanguage.startsWith('q='));
-  const preferredLanguage = preferredLanguages.find((preferredLanguage) =>
-    LOCALES.includes(preferredLanguage)
+    .filter(acceptedLanguage => !acceptedLanguage.startsWith('q='));
+  const preferredLanguage = preferredLanguages.find(preferredLanguage =>
+    LOCALES.includes(preferredLanguage),
   );
 
   return preferredLanguage ? preferredLanguage : DEFAULT_LOCALE;
@@ -25,7 +25,7 @@ const _detectLocale = (request: NextRequest) => {
 const isDemandedLocaleExist = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = LOCALES.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
 
   if (pathnameHasLocale) return true;
@@ -41,16 +41,8 @@ const redirectToPreferredLocale = async (request: NextRequest) => {
   return NextResponse.redirect(request.nextUrl);
 };
 
-export type {
-  LocalesType,
-};
+export type { LocalesType };
 
-export {
-  DEFAULT_LOCALE,
-  LOCALES,
-};
+export { DEFAULT_LOCALE, LOCALES };
 
-export {
-  isDemandedLocaleExist,
-  redirectToPreferredLocale,
-};
+export { isDemandedLocaleExist, redirectToPreferredLocale };

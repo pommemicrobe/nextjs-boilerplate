@@ -1,7 +1,7 @@
 import { isRedirectError } from 'next/dist/client/components/redirect';
 
 import { signUp } from '@/lib/authCredentials';
- 
+
 export default function SignUp() {
   // const signUpAction = async (formData: FormData) => {
   //   'use server';
@@ -19,7 +19,9 @@ export default function SignUp() {
     try {
       await signUp(formData);
     } catch (error) {
-      if (isRedirectError(error)) { throw error; }
+      if (isRedirectError(error)) {
+        throw error;
+      }
 
       console.log(error);
     }
@@ -34,14 +36,12 @@ export default function SignUp() {
     //       await signUp(formData);
     //     } catch (error) {
     //       if (isRedirectError(error)) { throw error; }
-          
+
     //       console.log(error);
     //     }
     //   }}
     // >
-    <form
-      action={signUpAction}
-    >
+    <form action={signUpAction}>
       <label>
         Email
         <input name="email" type="email" />
@@ -54,4 +54,4 @@ export default function SignUp() {
       <button>Sign Up</button>
     </form>
   );
-};
+}

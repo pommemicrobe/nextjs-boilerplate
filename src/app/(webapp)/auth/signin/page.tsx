@@ -1,7 +1,7 @@
 import { isRedirectError } from 'next/dist/client/components/redirect';
 
 import { signIn } from '@/lib/auth';
- 
+
 export default function SignIn() {
   return (
     <>
@@ -41,8 +41,10 @@ export default function SignIn() {
           try {
             await signIn('auth0');
           } catch (error) {
-            if (isRedirectError(error)) { throw error; }
-            
+            if (isRedirectError(error)) {
+              throw error;
+            }
+
             console.log('other error');
           }
         }}
@@ -53,9 +55,9 @@ export default function SignIn() {
       <hr />
 
       <form
-        action={async (formData) => {
+        action={async formData => {
           'use server';
-          await signIn('resend', formData)
+          await signIn('resend', formData);
         }}
       >
         <input type="text" name="email" placeholder="Email" />
@@ -63,4 +65,4 @@ export default function SignIn() {
       </form>
     </>
   );
-};
+}

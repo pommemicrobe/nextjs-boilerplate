@@ -7,6 +7,4 @@ const hash512 = (text: string): string => {
   return data.digest('hex');
 };
 
-export {
-  hash512,
-};
+export { hash512 };
