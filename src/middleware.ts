@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-import { isDemandedLocaleExist, redirectToPreferredLocale } from './lib/locale';
+import { isDemandedLocaleExist, redirectToPreferredLocale } from './libs/locale';
 
 export async function middleware(request: NextRequest) {
   if (

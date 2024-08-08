@@ -1,6 +1,6 @@
 import { isRedirectError } from 'next/dist/client/components/redirect';
 
-import { signUp } from '@/lib/authCredentials';
+import { signUp } from '@/libs/authCredentials';
 
 export default function SignUp() {
   // const signUpAction = async (formData: FormData) => {
