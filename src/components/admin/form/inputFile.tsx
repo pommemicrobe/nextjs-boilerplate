@@ -10,6 +10,7 @@ type File = {
 type InputProps = {
   accept?: string;
   classes?: string;
+  disabled?: boolean;
   files?: File[];
   label?: string;
   multiple?: boolean;
@@ -23,6 +24,7 @@ type InputProps = {
 export default function InputFile({
   accept = '',
   classes = '',
+  disabled = false,
   files,
   label,
   multiple = false,
@@ -89,7 +91,9 @@ export default function InputFile({
             className="w-[100px] px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-red-700 rounded-b-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
             type="button"
             onClick={
-              readonly || !onDelete ? undefined : () => onDelete(file.id)
+              readonly || disabled || !onDelete
+                ? undefined
+                : () => onDelete(file.id)
             }
           >
             <svg
@@ -123,6 +127,7 @@ export default function InputFile({
       <input
         accept={accept}
         className={`block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 ${classes}`}
+        disabled={disabled}
         multiple={multiple}
         name={name}
         readOnly={readonly}
