@@ -8,11 +8,11 @@ type SelectProps = {
   multiple?: boolean;
   placeholder?: string;
   required?: boolean;
-  values: [{ value: string | number; label: string | number }];
+  values: { value: string; label: string | number }[];
   onChange?: (ev: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-export default function select({
+export default function Select({
   classes = '',
   defaultValue = '',
   disabled = false,
@@ -33,6 +33,7 @@ export default function select({
 
       <select
         className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${classes}`}
+        defaultValue={defaultValue}
         disabled={disabled}
         multiple={multiple}
         name={name}
@@ -42,11 +43,7 @@ export default function select({
         <option>{placeholder}</option>
 
         {values.map((value, index) => (
-          <option
-            defaultValue={value.value}
-            key={index}
-            selected={value.value === defaultValue}
-          >
+          <option defaultValue={value.value} key={index}>
             {value.label}
           </option>
         ))}

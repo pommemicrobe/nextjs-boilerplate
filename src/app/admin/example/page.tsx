@@ -1,8 +1,10 @@
 'use client';
 
 import Breadcrumb from '@/components/admin/breadcrumb/breadcrumb';
+import Checkbox from '@/components/admin/form/checkbox';
 import Input from '@/components/admin/form/input';
 import InputFile from '@/components/admin/form/inputFile';
+import Select from '@/components/admin/form/select';
 import Textarea from '@/components/admin/form/textarea';
 import H1 from '@/components/admin/heading/h1';
 import H2 from '@/components/admin/heading/h2';
@@ -97,6 +99,24 @@ export default function Example() {
           name="description"
           placeholder="description"
           errorMessage="This is an error message"
+        />
+
+        <Select
+          label="Select"
+          name="select"
+          values={[
+            { value: '1', label: 'One' },
+            { value: '2', label: 'Two' },
+          ]}
+        />
+
+        <Checkbox
+          label="Checkbox"
+          name="checkbox"
+          values={[
+            { value: '1', label: 'One' },
+            { value: '2', label: 'Two' },
+          ]}
         />
       </div>
     </>
