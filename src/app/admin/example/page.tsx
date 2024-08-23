@@ -104,6 +104,7 @@ export default function Example() {
         <Select
           label="Select"
           name="select"
+          placeholder="Select an element"
           values={[
             { value: '1', label: 'One' },
             { value: '2', label: 'Two' },
